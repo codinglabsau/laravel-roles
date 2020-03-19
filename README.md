@@ -1,14 +1,12 @@
 # Roles
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
+[![Latest Stable Version](https://poser.pugx.org/codinglabsau/laravel-roles/v/stable)](https://packagist.org/packages/codinglabsau/laravel-roles)
+[![Total Downloads](https://poser.pugx.org/codinglabsau/laravel-roles/downloads)](https://packagist.org/packages/codinglabsau/laravel-roles)
+[![License](https://poser.pugx.org/codinglabsau/laravel-roles/license)](https://packagist.org/packages/codinglabsau/laravel-roles)
 
 A super simple roles system for Laravel. 
 
 ## Installation
-
 Via Composer
 
 ``` bash
@@ -35,22 +33,33 @@ class User extends Authenticatable
 $role = \Codinglabs\Roles\Role::create(['name' => 'manager']);
 ```
 
+### Get roles
+```php
+$managerRole = \Codinglabs\Roles\Role::whereName('manager')->first();
+```
+
 ### Associate roles
 Under the hood we are using Eloquent many-to-many relationships.
 ```php
+use Codinglabs\Roles\Role;
+
+// attach multiple roles
 $user->roles()->attach([
-    \Codinglabs\Roles\Role::whereName('employee')->first()->id,
-    \Codinglabs\Roles\Role::whereName('manager')->first()->id,
+    Role::whereName('employee')->first()->id,
+    Role::whereName('manager')->first()->id,
 ]);
 
-$user->roles()->detach(\Codinglabs\Roles\Role::whereName('employee')->first()->id);
+// detach a single role
+$user->roles()->detach(Role::whereName('employee')->first());
 
+// update roles to match array
 $user->roles()->sync([
-    \Codinglabs\Roles\Role::whereName('employee')->first()->id,
+    Role::whereName('employee')->first()->id,
 ]);
 
+// ensure roles in array are attached without detaching others
 $user->roles()->syncWithoutDetaching([
-    \Codinglabs\Roles\Role::whereName('employee')->first()->id,
+    Role::whereName('employee')->first()->id,
 ]);
 ```
 
@@ -58,9 +67,9 @@ $user->roles()->syncWithoutDetaching([
 In `App\Http\Kernel`, register the middeware: 
 ```php
 protected $routeMiddleware = [
-        ...
-        'role' => \Codinglabs\Roles\CheckRole::class,
-    ];
+    ...
+    'role' => \Codinglabs\Roles\CheckRole::class,
+];
 ```
 And then call the middleware in your routes, seperating OR conditions with a pipe:
 ```php
@@ -68,7 +77,7 @@ Route::middleware('role:employee')->...
 Route::middleware('role:manager|admin')->...
 ```
 
-### Everywhere else
+### Check roles on a user
 Call hasRole on the user model:
 ```php
 // check a single role
@@ -79,6 +88,35 @@ $user->hasRole(['bar', 'baz']);
 
 // get all roles
 $user->roles;
+```
+
+### Sharing roles with UI (Inertiajs example)
+```php
+// AppServiceProvider.php
+Inertia::share([
+    'auth' => function () {
+        return [
+            'user' => Auth::user() ? [
+                'id' => Auth::user()->id,
+                'roles' => Auth::user()->roles->pluck('name'),
+            ] : null
+        ];
+    }
+]);
+```
+```javascript
+// app.js
+Vue.mixin({
+  methods: {
+    hasRole: function(role) {
+      return this.$page.auth.user.roles.includes(role)
+    }
+  }
+})
+```
+```vue
+// SomeComponent.vue
+<div v-if="hasRole('manager')">I am a manager</div>
 ```
 
 ## Change log
@@ -96,7 +134,7 @@ Please see [contributing.md](contributing.md) for details and a todolist.
 If you discover any security related issues, create an Issue.
 
 ## Credits
-- [Steve Thomas][https://github.com/stevethomas]
+- [Steve Thomas](https://github.com/stevethomas)
 - [All Contributors](../../contributors)
 
 ## License
