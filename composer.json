@@ -1,0 +1,40 @@
+{
+    "name": "codinglabsau/laravel-roles",
+    "description": "Simple Laravel roles",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Steve Thomas",
+            "email": "steve@codinglabs.com.au",
+            "homepage": "https://codinglabs.com.au"
+        }
+    ],
+    "homepage": "https://github.com/codinglabsau/laravel-roles",
+    "keywords": ["Laravel", "Roles"],
+    "require": {
+        "illuminate/support": "^5.8|^6.0|^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0",
+        "mockery/mockery": "^1.1",
+        "orchestra/testbench": "~3|~4",
+        "sempro/phpunit-pretty-print": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Codinglabs\\Roles\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Codinglabs\\Roles\\Tests\\": "tests"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Codinglabs\\Roles\\RolesServiceProvider"
+            ]
+        }
+    }
+}
