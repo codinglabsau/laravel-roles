@@ -12,6 +12,7 @@
     "homepage": "https://github.com/codinglabsau/laravel-roles",
     "keywords": ["Laravel", "Roles"],
     "require": {
+        "php" : "^7.2.5",
         "illuminate/support": "^5.8|^6.0|^7.0"
     },
     "require-dev": {
