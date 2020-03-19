@@ -22,10 +22,5 @@ class RolesServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/roles.php', 'roles');
-
-        // Register the service the package provides.
-        $this->app->singleton('roles', function ($app) {
-            return new Roles;
-        });
     }
 }
