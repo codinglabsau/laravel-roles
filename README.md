@@ -139,3 +139,6 @@ If you discover any security related issues, create an Issue.
 
 ## License
 MIT. Please see the [license file](LICENSE.md) for more information.
+
+## About Coding Labs
+Coding Labs is a web app development agency based on the Gold Coast, Australia. See our open source projects [on our website](https://codinglabs.com.au/open-source).
