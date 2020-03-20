@@ -77,6 +77,21 @@ Route::middleware('role:employee')->...
 Route::middleware('role:manager|admin')->...
 ```
 
+Or in the construct method in a controller:
+```php
+class ManagerDashboardController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('role:manager');
+    }
+
+    ...
+}
+```
+
+If the middleware check fails, a 403 response will be returned.
+
 ### Check roles on a user
 Call hasRole on the user model:
 ```php
@@ -119,19 +134,11 @@ Vue.mixin({
 <div v-if="hasRole('manager')">I am a manager</div>
 ```
 
-## Change log
-Please see the [changelog](changelog.md) for more information on what has changed recently.
-
-## Testing
-``` bash
-$ composer test
-```
-
 ## Contributing
 Please see [contributing.md](contributing.md) for details and a todolist.
 
 ## Security
-If you discover any security related issues, create an Issue.
+If you discover any security related issues, create an issue on GitHub.
 
 ## Credits
 - [Steve Thomas](https://github.com/stevethomas)
