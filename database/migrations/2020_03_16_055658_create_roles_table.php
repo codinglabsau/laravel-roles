@@ -19,6 +19,8 @@ class CreateRolesTable extends Migration
             $table->integer('role_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->timestamps();
+
+            $table->unique(['user_id', 'role_id']);
         });
     }
 
