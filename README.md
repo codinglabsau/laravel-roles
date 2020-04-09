@@ -1,5 +1,6 @@
 # Roles
 
+[![Build Status](https://travis-ci.org/codinglabsau/laravel-roles.svg?branch=master)](https://travis-ci.org/codinglabsau/laravel-roles)
 [![Latest Stable Version](https://poser.pugx.org/codinglabsau/laravel-roles/v/stable)](https://packagist.org/packages/codinglabsau/laravel-roles)
 [![Total Downloads](https://poser.pugx.org/codinglabsau/laravel-roles/downloads)](https://packagist.org/packages/codinglabsau/laravel-roles)
 [![License](https://poser.pugx.org/codinglabsau/laravel-roles/license)](https://packagist.org/packages/codinglabsau/laravel-roles)
