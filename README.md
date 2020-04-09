@@ -67,14 +67,25 @@ $user->roles()->syncWithoutDetaching([
 In `App\Http\Kernel`, register the middeware: 
 ```php
 protected $routeMiddleware = [
-    ...
+    // ...
     'role' => \Codinglabs\Roles\CheckRole::class,
 ];
 ```
-And then call the middleware in your routes, seperating OR conditions with a pipe:
+And then call the middleware in your routes, seperating multiple roles with a pipe:
 ```php
 Route::middleware('role:employee')->...
 Route::middleware('role:manager|admin')->...
+```
+
+Or with a gate:
+```php
+class UserController extends Controller
+{
+    public function destroy()
+    {
+        $this->authorize('role', 'admin');
+    }
+}
 ```
 
 Or in the construct method in a controller:
@@ -85,8 +96,6 @@ class ManagerDashboardController extends Controller
     {
         $this->middleware('role:manager');
     }
-
-    ...
 }
 ```
 

@@ -2,6 +2,7 @@
 
 namespace Codinglabs\Roles;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class RolesServiceProvider extends ServiceProvider
@@ -17,6 +18,10 @@ class RolesServiceProvider extends ServiceProvider
         ], 'migrations');
 
          $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+
+        Gate::define('role', function ($user, $role) {
+            return $user->hasRole($role);
+        });
     }
 
     public function register()
