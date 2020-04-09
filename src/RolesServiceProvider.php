@@ -19,8 +19,8 @@ class RolesServiceProvider extends ServiceProvider
 
          $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
-        Gate::define('role', function ($user, $role) {
-            return $user->hasRole($role);
+        Gate::define('role', function ($user, ...$roles) {
+            return $user->hasRole($roles);
         });
     }
 
