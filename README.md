@@ -1,4 +1,4 @@
-# Roles
+# Laravel Roles
 
 [![Build Status](https://travis-ci.org/codinglabsau/laravel-roles.svg?branch=master)](https://travis-ci.org/codinglabsau/laravel-roles)
 [![Latest Stable Version](https://poser.pugx.org/codinglabsau/laravel-roles/v/stable)](https://packagist.org/packages/codinglabsau/laravel-roles)
