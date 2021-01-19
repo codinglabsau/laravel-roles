@@ -16,7 +16,7 @@ $ composer require codinglabsau/laravel-roles
 
 ## Publish All Assets
 ```
-php artisan vendor:publish --tag="roles"
+php artisan vendor:publish --provider="Codinglabs\Roles\RolesServiceProvider"
 ```
 ## Publish Specific Assets
 ```
