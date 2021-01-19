@@ -8,7 +8,7 @@ trait HasRoles
 {
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class)
+        return $this->belongsToMany(config('roles.models.role'))
             ->withTimestamps();
     }
 
