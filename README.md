@@ -14,6 +14,16 @@ Via Composer
 $ composer require codinglabsau/laravel-roles
 ```
 
+## Publish All Assets
+```
+php artisan vendor:publish --tag="roles"
+```
+## Publish Specific Assets
+```
+php artisan vendor:publish --tag="roles-config"
+php artisan vendor:publish --tag="roles-migrations"
+```
+
 ## Usage
 ### Add the trait
 Add the `HasRoles` trait to your user model:
@@ -142,6 +152,42 @@ Vue.mixin({
 ```vue
 // SomeComponent.vue
 <div v-if="hasRole('manager')">I am a manager</div>
+```
+## Configuration
+- Customise role model
+- Disable default migrations
+
+```
+<?php
+
+return [
+    /*
+    |--------------------------------------------------------------------------
+    | Migrations
+    |--------------------------------------------------------------------------
+    |
+    | This will determine whether to use default migrations or not. This should
+    | be set to false if you have published the migration files.
+    |
+    */
+
+    'default_migrations' => true,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Models
+    |--------------------------------------------------------------------------
+    |
+    | You may replace the models here with your own if you need to use a custom
+    | model.
+    |
+    */
+
+    'models' => [
+        'role' => \Codinglabs\Roles\Role::class
+    ]
+];
+
 ```
 
 ## Contributing
