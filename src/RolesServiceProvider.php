@@ -17,11 +17,6 @@ class RolesServiceProvider extends ServiceProvider
             __DIR__.'/../database/migrations/' => database_path('migrations')
         ], 'roles-migrations');
 
-
-        if (config('roles.default_migrations')) {
-            $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-        }
-
         Gate::define('role', function ($user, ...$roles) {
             return $user->hasRole($roles);
         });

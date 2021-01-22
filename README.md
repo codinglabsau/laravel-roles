@@ -163,18 +163,6 @@ Vue.mixin({
 return [
     /*
     |--------------------------------------------------------------------------
-    | Migrations
-    |--------------------------------------------------------------------------
-    |
-    | This will determine whether to use default migrations or not. This should
-    | be set to false if you have published the migration files.
-    |
-    */
-
-    'default_migrations' => true,
-
-    /*
-    |--------------------------------------------------------------------------
     | Models
     |--------------------------------------------------------------------------
     |
