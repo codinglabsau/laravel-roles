@@ -14,17 +14,17 @@ Via Composer
 $ composer require codinglabsau/laravel-roles
 ```
 
-## Publish All Assets
+## Usage
+
+### Publish All Assets
 ```
 php artisan vendor:publish --provider="Codinglabs\Roles\RolesServiceProvider"
 ```
-## Publish Specific Assets
+### Or Publish Specific Assets
 ```
 php artisan vendor:publish --tag="roles-config"
 php artisan vendor:publish --tag="roles-migrations"
 ```
-
-## Usage
 ### Add the trait
 Add the `HasRoles` trait to your user model:
 
