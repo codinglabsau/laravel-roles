@@ -177,6 +177,8 @@ return [
 ];
 
 ```
+## Upgrading from v1 to v2
+Please see [upgrading from v1 to v2](upgrade.md) for details and instructions to avoid any issues after upgrading to v2.
 
 ## Contributing
 Please see [contributing.md](contributing.md) for details and a todolist.
