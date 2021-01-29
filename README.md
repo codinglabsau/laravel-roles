@@ -16,15 +16,17 @@ $ composer require codinglabsau/laravel-roles
 
 ## Usage
 
-### Publish All Assets
+### Publish Assets
 ```
 php artisan vendor:publish --provider="Codinglabs\Roles\RolesServiceProvider"
 ```
-### Or Publish Specific Assets
+##### Or Publish Specific Assets
 ```
 php artisan vendor:publish --tag="roles-config"
 php artisan vendor:publish --tag="roles-migrations"
 ```
+### Migrations
+You will need to ensure that you have published the migrations and run `php artisan migrate`.
 ### Add the trait
 Add the `HasRoles` trait to your user model:
 
@@ -149,13 +151,11 @@ Vue.mixin({
   }
 })
 ```
-```vue
-// SomeComponent.vue
+```html
+<!-- SomeComponent.vue -->
 <div v-if="hasRole('manager')">I am a manager</div>
 ```
 ## Configuration
-- Customise role model
-- Disable default migrations
 
 ```
 <?php
