@@ -8,16 +8,16 @@ trait HasRoles
 {
     public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(Role::class)
+        return $this->belongsToMany(config('roles.models.role'))
             ->withTimestamps();
     }
 
     public function hasRole($role): bool
     {
         if (is_array($role)) {
-            return $this->roles()->whereIn('name', $role)->exists();
+            return $this->roles->whereIn('name', $role)->isNotEmpty();
         }
 
-        return $this->roles()->where('name', $role)->exists();
+        return $this->roles->where('name', $role)->isNotEmpty();
     }
 }

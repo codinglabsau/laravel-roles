@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Codinglabs\Roles\RolesServiceProvider;
 use Illuminate\Foundation\Auth\User as AuthUser;
 
-class MigrateWithLaravelTest extends TestCase
+class RolesTest extends TestCase
 {
     /** @var User */
     protected $user;
@@ -18,6 +18,7 @@ class MigrateWithLaravelTest extends TestCase
     {
         parent::setUp();
 
+        $this->artisan('vendor:publish', ['--tag' => 'roles-migrations'])->run();
         $this->artisan('migrate', ['--database' => 'testbench'])->run();
         $this->loadLaravelMigrations(['--database' => 'testbench']);
 

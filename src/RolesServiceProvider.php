@@ -11,13 +11,11 @@ class RolesServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../config/roles.php' => config_path('roles.php'),
-        ]);
+        ], 'roles-config');
 
         $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('migrations')
-        ], 'migrations');
-
-         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        ], 'roles-migrations');
 
         Gate::define('role', function ($user, ...$roles) {
             return $user->hasRole($roles);
