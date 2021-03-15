@@ -4,7 +4,7 @@
 ###### Impact: High
 Migrations will no longer be automatically ran by the packages service provider, the migrations will now need to be published using this command:
 ```
-php artisan publish --tag="roles-migrations"
+php artisan vendor:publish --tag="roles-migrations"
 ```
 If you haven't already migrated the tables then run `php artisan migrate` to ensure the tables are created.
 
@@ -14,5 +14,5 @@ The config file has been updated to now include the option to define what class 
 
 If you wish to customise the model used for roles then you must publish the config using this command:
 ```
-php artisan publish --tag="roles-config"
+php artisan vendor:publish --tag="roles-config"
 ```
