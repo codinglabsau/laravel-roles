@@ -1,15 +1,15 @@
 <?php
 
-namespace Orchestra\Testbench\Tests\Databases;
+namespace Codinglabs\Roles\Tests;
 
 use Codinglabs\Roles\HasRoles;
-use Orchestra\Testbench\TestCase;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Auth;
+use Codinglabs\Roles\CheckRole;
+use Illuminate\Support\Facades\Route;
 use Codinglabs\Roles\RolesServiceProvider;
 use Illuminate\Foundation\Auth\User as AuthUser;
+use Orchestra\Testbench\TestCase as BaseTestClass;
 
-class RolesTest extends TestCase
+abstract class TestCase extends BaseTestClass
 {
     /** @var User */
     protected $user;
@@ -21,6 +21,10 @@ class RolesTest extends TestCase
         $this->artisan('vendor:publish', ['--tag' => 'roles-migrations'])->run();
         $this->artisan('migrate', ['--database' => 'testbench'])->run();
         $this->loadLaravelMigrations(['--database' => 'testbench']);
+
+        Route::get('test-middleware', function () {
+            return 'ok';
+        })->middleware(CheckRole::class . ':admin');
 
         $this->user = User::create([
             'name' => 'Laravel Roles',
@@ -55,38 +59,6 @@ class RolesTest extends TestCase
             'database' => ':memory:',
             'prefix' => '',
         ]);
-    }
-
-    /** @test */
-    public function returns_false_when_no_user_or_roles_exist()
-    {
-        $this->assertFalse(Gate::check('role', 'admin'));
-        $this->assertFalse(Gate::check('role', ['admin']));
-    }
-
-    /** @test */
-    public function returns_false_when_user_has_no_matching_roles()
-    {
-        Auth::login($this->user);
-        $this->assertFalse(Gate::check('role', 'admin'));
-        $this->assertFalse(Gate::check('role', ['admin']));
-
-        $this->user->roles()->create(['name' => 'employee']);
-        $this->user->roles()->attach('employee');
-        $this->assertFalse(Gate::check('role', 'admin'));
-        $this->assertFalse(Gate::check('role', ['admin']));
-    }
-
-    /** @test */
-    public function returns_true_when_user_has_matching_role()
-    {
-        $this->user->roles()->create(['name' => 'admin']);
-        $this->user->roles()->attach('admin');
-        Auth::login($this->user);
-
-        $this->assertTrue(Gate::check('role', 'admin'));
-        $this->assertTrue(Gate::check('role', ['admin']));
-        $this->assertTrue(Gate::check('role', ['manager', 'admin']));
     }
 }
 

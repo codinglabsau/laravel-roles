@@ -17,13 +17,13 @@ class CheckRole
      */
     public function handle($request, Closure $next, $roles)
     {
+        abort_unless($request->user(), 401, 'Unauthorized');
+
         if (Str::contains($roles, '|')) {
             $roles = explode('|', $roles);
         }
 
-        if (!$request->user()->hasRole($roles)) {
-            abort(403, 'This action is unauthorized.');
-        }
+        abort_unless($request->user()->hasRole($roles), 403, 'This action is unauthorized.');
 
         return $next($request);
     }
