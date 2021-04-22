@@ -1,9 +1,8 @@
 # Laravel Roles
 
-[![Build Status](https://travis-ci.org/codinglabsau/laravel-roles.svg?branch=master)](https://travis-ci.org/codinglabsau/laravel-roles)
-[![Latest Stable Version](https://poser.pugx.org/codinglabsau/laravel-roles/v/stable)](https://packagist.org/packages/codinglabsau/laravel-roles)
-[![Total Downloads](https://poser.pugx.org/codinglabsau/laravel-roles/downloads)](https://packagist.org/packages/codinglabsau/laravel-roles)
-[![License](https://poser.pugx.org/codinglabsau/laravel-roles/license)](https://packagist.org/packages/codinglabsau/laravel-roles)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/codinglabsau/laravel-roles.svg?style=flat-square)](https://packagist.org/packages/codinglabsau/laravel-roles)
+[![Test](https://github.com/codinglabsau/laravel-roles/actions/workflows/run-tests.yml/badge.svg)](https://github.com/codinglabsau/laravel-roles/actions/workflows/run-tests.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/codinglabsau/laravel-roles.svg?style=flat-square)](https://packagist.org/packages/codinglabsau/laravel-roles)
 
 A super simple roles system for Laravel. 
 
