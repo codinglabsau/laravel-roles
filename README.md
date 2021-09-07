@@ -4,28 +4,27 @@
 [![Test](https://github.com/codinglabsau/laravel-roles/actions/workflows/run-tests.yml/badge.svg)](https://github.com/codinglabsau/laravel-roles/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/codinglabsau/laravel-roles.svg?style=flat-square)](https://packagist.org/packages/codinglabsau/laravel-roles)
 
-A super simple roles system for Laravel. 
+A simple, flexible roles implementation for Laravel. 
 
 ## Installation
-Via Composer
-
-``` bash
+### Install with composer
+```bash
 $ composer require codinglabsau/laravel-roles
 ```
 
-## Usage
+### Publish migrations and migrate
+```bash
+php artisan vendor:publish --tag="roles-migrations"
+php artisan migrate
+```
 
-### Publish Assets
-```
-php artisan vendor:publish --provider="Codinglabs\Roles\RolesServiceProvider"
-```
-##### Or Publish Specific Assets
+## Configuration
+If you need to override the default `Role` model, you can do that by publishing the config and setting the `models.role` option.
 ```
 php artisan vendor:publish --tag="roles-config"
-php artisan vendor:publish --tag="roles-migrations"
 ```
-### Migrations
-You will need to ensure that you have published the migrations and run `php artisan migrate`.
+
+## Usage
 ### Add the trait
 Add the `HasRoles` trait to your user model:
 
@@ -83,6 +82,7 @@ protected $routeMiddleware = [
     'role' => \Codinglabs\Roles\CheckRole::class,
 ];
 ```
+
 And then call the middleware in your routes, seperating multiple roles with a pipe:
 ```php
 Route::middleware('role:employee')->...
@@ -100,7 +100,7 @@ class UserController extends Controller
 }
 ```
 
-Or in the construct method in a controller:
+Or in the constructor of a controller:
 ```php
 class ManagerDashboardController extends Controller
 {
@@ -124,6 +124,13 @@ $user->hasRole(['bar', 'baz']);
 
 // get all roles
 $user->roles;
+```
+
+### Conditionally showing content with the blade directive
+```html
+@role('admin')
+<div>Super secret admin stuff goes here...</div>
+@endrole
 ```
 
 ### Sharing roles with UI (Inertiajs example)
@@ -154,28 +161,7 @@ Vue.mixin({
 <!-- SomeComponent.vue -->
 <div v-if="hasRole('manager')">I am a manager</div>
 ```
-## Configuration
 
-```
-<?php
-
-return [
-    /*
-    |--------------------------------------------------------------------------
-    | Models
-    |--------------------------------------------------------------------------
-    |
-    | You may replace the models here with your own if you need to use a custom
-    | model.
-    |
-    */
-
-    'models' => [
-        'role' => \Codinglabs\Roles\Role::class
-    ]
-];
-
-```
 ## Upgrading from v1 to v2
 Please see [upgrading from v1 to v2](UPGRADING.md) for details and instructions to avoid any issues after upgrading to v2.
 
