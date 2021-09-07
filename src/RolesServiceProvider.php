@@ -3,6 +3,7 @@
 namespace Codinglabs\Roles;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class RolesServiceProvider extends ServiceProvider
@@ -19,6 +20,14 @@ class RolesServiceProvider extends ServiceProvider
 
         Gate::define('role', function ($user, ...$roles) {
             return $user->hasRole($roles);
+        });
+
+        Blade::if('role', function (...$roles) {
+            if (auth()->check()) {
+                return auth()->user()->hasRole($roles);
+            }
+
+            return false;
         });
     }
 
