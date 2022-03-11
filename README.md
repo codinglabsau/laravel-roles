@@ -4,7 +4,7 @@
 [![Test](https://github.com/codinglabsau/laravel-roles/actions/workflows/run-tests.yml/badge.svg)](https://github.com/codinglabsau/laravel-roles/actions/workflows/run-tests.yml)
 [![Total Downloads](https://img.shields.io/packagist/dt/codinglabsau/laravel-roles.svg?style=flat-square)](https://packagist.org/packages/codinglabsau/laravel-roles)
 
-A simple, flexible roles implementation for Laravel. 
+A simple, flexible roles implementation for Laravel v6-v9. 
 
 ## Installation
 ### Install with composer
