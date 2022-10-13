@@ -111,7 +111,26 @@ class ManagerDashboardController extends Controller
 }
 ```
 
-If the middleware check fails, a 403 response will be returned.
+Or with a policy:
+```php
+class StorePostController extends Controller
+{
+    public function __invoke(StorePostRequest $request)
+    {
+        // save post
+    }
+}
+
+class StorePostRequest extends FormRequest
+{
+    public function authorize(): bool
+    {
+        return auth()->user()->hasRole('admin');
+    }
+}
+```
+
+All of the examples above with produce a 403 Unauthorized response.
 
 ### Check roles on a user
 Call hasRole on the user model:
@@ -124,6 +143,30 @@ $user->hasRole(['bar', 'baz']);
 
 // get all roles
 $user->roles;
+```
+
+### Role resource access control
+Sometimes you may want to not only check whether the user has a role, but whether they should have access to a particular resource. This is where role resource access control comes in.
+
+You can grant a user access to a resource as follows: 
+```php
+$user->grantRoleAccessToResource...
+```
+
+And check if the user can access a resource:
+```php
+$user->canAccessResource($post);
+```
+
+The easiest way to implement this is with Laravel Policies.
+```php
+class PostPolicy
+{
+    public function update(User $user, Post $post): bool
+    {
+        return $post->user->is($user) || $user->canAccessResource($post);
+    }
+}
 ```
 
 ### Conditionally showing content with the blade directive
