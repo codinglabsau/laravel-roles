@@ -3,7 +3,7 @@
 namespace Codinglabs\Roles;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 trait HasRoles
@@ -14,9 +14,9 @@ trait HasRoles
             ->withTimestamps();
     }
 
-    public function resource(): MorphOne
+    public function resources(): MorphMany
     {
-        return $this->morphOne(config('roles.models.role_acls'), 'resource');
+        return $this->morphMany(config('roles.models.role_acls'), 'resourceable');
     }
 
     public function hasRole(string|array|Role $role): bool
