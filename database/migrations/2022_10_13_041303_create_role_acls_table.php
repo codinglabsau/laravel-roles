@@ -12,12 +12,12 @@ class CreateRoleAclsTable extends Migration
             $table->increments('id');
             $table->integer('role_id')->unsigned()->nullable();
             $table->integer('user_id')->unsigned();
-            $table->string('resource_type');
-            $table->string('resource_id');
+            $table->string('resourceable_type');
+            $table->string('resourceable_id');
             $table->timestamps();
 
             $table->index(['role_id', 'user_id']);
-            $table->index(['resource_type', 'resource_id']);
+            $table->index(['resourceable_type', 'resourceable_id']);
         });
     }
 

@@ -28,18 +28,18 @@ class RoleTest extends TestCase
     /** @test */
     public function can_create_acls()
     {
-        $this->user->resource()->create([
+        $this->user->resourceables()->create([
             'role_id' => 2,
             'user_id' => $this->user->id,
-            'resource_type' => User::class,
-            'resource_id' => 1,
+            'resourceable_type' => User::class,
+            'resourceable_id' => 1,
         ]);
 
         $this->assertDatabaseHas('role_acls', [
             'role_id' => 2,
             'user_id' => $this->user->id,
-            'resource_type' => User::class,
-            'resource_id' => 1,
+            'resourceable_type' => User::class,
+            'resourceable_id' => 1,
         ]);
     }
 }

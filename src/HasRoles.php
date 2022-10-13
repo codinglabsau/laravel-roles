@@ -2,7 +2,6 @@
 
 namespace Codinglabs\Roles;
 
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
@@ -14,7 +13,7 @@ trait HasRoles
             ->withTimestamps();
     }
 
-    public function resources(): MorphMany
+    public function resourceables(): MorphMany
     {
         return $this->morphMany(config('roles.models.role_acls'), 'resourceable');
     }
@@ -34,14 +33,5 @@ trait HasRoles
         return $this->roles
             ->whereIn('name', $roleNames)
             ->isNotEmpty();
-    }
-
-    public function canAccessResource(Model $model): bool
-    {
-        return $this->accessible()
-            ->where([
-                'accessible_type' => get_class($model),
-                'accessible_id' => $model->id,
-            ])->exists();
     }
 }
