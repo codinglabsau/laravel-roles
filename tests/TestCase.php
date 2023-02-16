@@ -9,10 +9,9 @@ use Codinglabs\Roles\RolesServiceProvider;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Orchestra\Testbench\TestCase as BaseTestClass;
 
-abstract class TestCase extends BaseTestClass
+class TestCase extends BaseTestClass
 {
-    /** @var User */
-    protected $user;
+    protected User $user;
 
     protected function setUp(): void
     {
@@ -36,10 +35,10 @@ abstract class TestCase extends BaseTestClass
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
-     * @return array
+     * @param  \Illuminate\Foundation\Application  $app
+     * @return array<int, class-string<\Illuminate\Support\ServiceProvider>>
      */
-    protected function getPackageProviders($app)
+    protected function getPackageProviders($app): array
     {
         return [
             RolesServiceProvider::class
@@ -50,7 +49,7 @@ abstract class TestCase extends BaseTestClass
      * @param \Illuminate\Foundation\Application $app
      * @return void
      */
-    protected function getEnvironmentSetUp($app)
+    protected function getEnvironmentSetUp($app): void
     {
         // Setup default database to use sqlite :memory:
         $app['config']->set('database.default', 'testbench');
