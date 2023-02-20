@@ -6,7 +6,7 @@
 
 A simple, flexible roles implementation for Laravel v10. 
 
-See [v2.4 for Laravel 6-9 support](https://github.com/codinglabsau/laravel-roles/releases/tag/v2.3.0).
+See [v2.3 for Laravel 6-9 support](https://github.com/codinglabsau/laravel-roles/releases/tag/v2.3.0).
 
 ## Installation
 ### Install with composer
