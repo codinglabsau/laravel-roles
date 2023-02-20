@@ -13,9 +13,10 @@
     "keywords": ["Laravel", "Roles"],
     "require": {
         "php" : "^8.1",
-        "illuminate/support": "^9.0|^10.0"
+        "illuminate/support": "^10.0"
     },
     "require-dev": {
+        "codinglabsau/php-styles": "dev-main",
         "phpunit/phpunit": "^10.0",
         "orchestra/testbench": "^8.0"
     },

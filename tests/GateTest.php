@@ -2,8 +2,8 @@
 
 namespace Codinglabs\Roles\Tests;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class GateTest extends TestCase
 {

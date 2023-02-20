@@ -11,11 +11,11 @@ class RolesServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/../config/roles.php' => config_path('roles.php'),
+            __DIR__ . '/../config/roles.php' => config_path('roles.php'),
         ], 'roles-config');
 
         $this->publishes([
-            __DIR__.'/../database/migrations/' => database_path('migrations')
+            __DIR__ . '/../database/migrations/' => database_path('migrations')
         ], 'roles-migrations');
 
         Gate::define('role', function ($user, ...$roles) {
@@ -33,6 +33,6 @@ class RolesServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/roles.php', 'roles');
+        $this->mergeConfigFrom(__DIR__ . '/../config/roles.php', 'roles');
     }
 }
