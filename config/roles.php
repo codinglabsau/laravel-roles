@@ -12,6 +12,6 @@ return [
     */
 
     'models' => [
-        'role' => \Codinglabs\Roles\Role::class
-    ]
+        'role' => \Codinglabs\Roles\Role::class,
+    ],
 ];

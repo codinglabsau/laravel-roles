@@ -15,7 +15,7 @@ class RolesServiceProvider extends ServiceProvider
         ], 'roles-config');
 
         $this->publishes([
-            __DIR__ . '/../database/migrations/' => database_path('migrations')
+            __DIR__ . '/../database/migrations/' => database_path('migrations'),
         ], 'roles-migrations');
 
         Gate::define('role', function ($user, ...$roles) {

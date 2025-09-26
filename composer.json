@@ -19,9 +19,9 @@
     "illuminate/support": "^10.0|^11.0|^12.0"
   },
   "require-dev": {
-    "codinglabsau/php-styles": "dev-main",
     "phpunit/phpunit": "^10.0",
-    "orchestra/testbench": "^8.0.1"
+    "orchestra/testbench": "^8.0.1",
+    "laravel/pint": "^1.25"
   },
   "autoload": {
     "psr-4": {

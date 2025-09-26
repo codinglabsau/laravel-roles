@@ -1,0 +1,20 @@
+{
+    "preset": "laravel",
+    "rules": {
+        "concat_space": {
+            "spacing": "one"
+        },
+        "new_with_parentheses": {
+            "named_class": true,
+            "anonymous_class": true
+        },
+        "ordered_imports": {
+            "imports_order": [
+                "const",
+                "class",
+                "function"
+            ],
+            "sort_algorithm": "length"
+        }
+    }
+}

@@ -41,13 +41,12 @@ class TestCase extends BaseTestClass
     protected function getPackageProviders($app): array
     {
         return [
-            RolesServiceProvider::class
+            RolesServiceProvider::class,
         ];
     }
 
     /**
-     * @param \Illuminate\Foundation\Application $app
-     * @return void
+     * @param  \Illuminate\Foundation\Application  $app
      */
     protected function getEnvironmentSetUp($app): void
     {
