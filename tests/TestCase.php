@@ -5,6 +5,8 @@ namespace Codinglabs\Roles\Tests;
 use Codinglabs\Roles\HasRoles;
 use Codinglabs\Roles\CheckRole;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use Illuminate\Support\ServiceProvider;
 use Codinglabs\Roles\RolesServiceProvider;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Orchestra\Testbench\TestCase as BaseTestClass;
@@ -35,8 +37,8 @@ class TestCase extends BaseTestClass
     }
 
     /**
-     * @param  \Illuminate\Foundation\Application  $app
-     * @return array<int, class-string<\Illuminate\Support\ServiceProvider>>
+     * @param  Application  $app
+     * @return array<int, class-string<ServiceProvider>>
      */
     protected function getPackageProviders($app): array
     {
@@ -46,7 +48,7 @@ class TestCase extends BaseTestClass
     }
 
     /**
-     * @param  \Illuminate\Foundation\Application  $app
+     * @param  Application  $app
      */
     protected function getEnvironmentSetUp($app): void
     {

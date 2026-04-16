@@ -1,5 +1,7 @@
 <?php
 
+use Codinglabs\Roles\Role;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -12,6 +14,6 @@ return [
     */
 
     'models' => [
-        'role' => \Codinglabs\Roles\Role::class,
+        'role' => Role::class,
     ],
 ];

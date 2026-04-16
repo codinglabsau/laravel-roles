@@ -4,13 +4,14 @@ namespace Codinglabs\Roles;
 
 use Closure;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 
 class CheckRole
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @param  string  $roles
      * @return mixed
      */
