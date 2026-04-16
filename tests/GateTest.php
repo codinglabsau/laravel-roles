@@ -1,41 +1,30 @@
 <?php
 
-namespace Codinglabs\Roles\Tests;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
-class GateTest extends TestCase
-{
-    /** @test */
-    public function returns_false_when_no_user_or_roles_exist()
-    {
-        $this->assertFalse(Gate::check('role', 'admin'));
-        $this->assertFalse(Gate::check('role', ['admin']));
-    }
+it('returns false when no user or roles exist', function () {
+    expect(Gate::check('role', 'admin'))->toBeFalse();
+    expect(Gate::check('role', ['admin']))->toBeFalse();
+});
 
-    /** @test */
-    public function returns_false_when_user_has_no_matching_roles()
-    {
-        Auth::login($this->user);
-        $this->assertFalse(Gate::check('role', 'admin'));
-        $this->assertFalse(Gate::check('role', ['admin']));
+it('returns false when user has no matching roles', function () {
+    Auth::login($this->user);
+    expect(Gate::check('role', 'admin'))->toBeFalse();
+    expect(Gate::check('role', ['admin']))->toBeFalse();
 
-        $this->user->roles()->create(['name' => 'employee']);
-        $this->user->roles()->attach('employee');
-        $this->assertFalse(Gate::check('role', 'admin'));
-        $this->assertFalse(Gate::check('role', ['admin']));
-    }
+    $this->user->roles()->create(['name' => 'employee']);
+    $this->user->roles()->attach('employee');
+    expect(Gate::check('role', 'admin'))->toBeFalse();
+    expect(Gate::check('role', ['admin']))->toBeFalse();
+});
 
-    /** @test */
-    public function returns_true_when_user_has_matching_role()
-    {
-        $this->user->roles()->create(['name' => 'admin']);
-        $this->user->roles()->attach('admin');
-        Auth::login($this->user);
+it('returns true when user has matching role', function () {
+    $this->user->roles()->create(['name' => 'admin']);
+    $this->user->roles()->attach('admin');
+    Auth::login($this->user);
 
-        $this->assertTrue(Gate::check('role', 'admin'));
-        $this->assertTrue(Gate::check('role', ['admin']));
-        $this->assertTrue(Gate::check('role', ['manager', 'admin']));
-    }
-}
+    expect(Gate::check('role', 'admin'))->toBeTrue();
+    expect(Gate::check('role', ['admin']))->toBeTrue();
+    expect(Gate::check('role', ['manager', 'admin']))->toBeTrue();
+});
